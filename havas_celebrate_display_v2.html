@@ -1,0 +1,964 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something to Celebrate — Havas</title>
+<link href="https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap" rel="stylesheet">
+<script src="https://cdnjs.cloudflare.com/ajax/libs/xlsx/0.18.5/xlsx.full.min.js"></script>
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --havas-pink: #FF0080;
+    --havas-pink-light: #FF4DAA;
+    --havas-pink-glow: #FF69B4;
+    --havas-purple: #8B00FF;
+    --havas-purple-light: #B44FFF;
+    --havas-gold: #FFD600;
+    --havas-white-acc: #FFE8F4;
+    --havas-dark: #12000A;
+    --havas-white: #FFFFFF;
+    --havas-warm: #FFE8F4;
+    --havas-mid: #C090A8;
+    --angle: 25deg;
+  }
+
+  body {
+    background: var(--havas-dark);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(255,0,128,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 90% 80%, rgba(139,0,255,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(180,79,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgShift 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle, rgba(255,0,128,0.6) 1.5px, transparent 1.5px),
+      radial-gradient(circle, rgba(139,0,255,0.5) 1px, transparent 1px),
+      radial-gradient(circle, rgba(180,79,255,0.4) 1px, transparent 1px);
+    background-size: 80px 80px, 120px 120px, 60px 60px;
+    background-position: 10px 10px, 40px 40px, 25px 65px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  .screen {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0F0015 0%, #12000A 50%, #0A001A 100%);
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 80px rgba(255,0,128,0.35), 0 0 160px rgba(139,0,255,0.2), 0 30px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .angle-bar {
+    position: absolute;
+    top: 0; right: -40px;
+    width: 220px; height: 100%;
+    background: linear-gradient(180deg, #FF0080 0%, #C030D0 50%, #8B00FF 100%);
+    transform: skewX(calc(-1 * var(--angle)));
+    transform-origin: top right;
+    z-index: 1;
+  }
+
+  .angle-bar-2 {
+    position: absolute;
+    top: 0; right: 155px;
+    width: 14px; height: 100%;
+    background: rgba(139,0,255,0.4);
+    transform: skewX(calc(-1 * var(--angle)));
+    z-index: 2;
+  }
+
+  .bottom-line {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 62%; height: 4px;
+    background: linear-gradient(90deg, #FF0080, #C030D0, #8B00FF);
+    z-index: 3;
+  }
+
+  .starburst {
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,0,128,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: starPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes starPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+
+  .brand-area {
+    position: absolute;
+    top: 38px; left: 52px;
+    z-index: 10;
+  }
+
+  .havas-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.35em;
+    color: var(--havas-white);
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+
+  .program-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--havas-pink);
+    text-transform: uppercase;
+    margin-top: 5px;
+    text-shadow: 0 0 12px rgba(255,0,128,0.7);
+  }
+
+  .content {
+    position: absolute;
+    top: 50%; left: 52px;
+    transform: translateY(-50%);
+    width: 58%;
+    z-index: 10;
+  }
+
+  .celebration-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 16px rgba(255,0,128,0.8);
+  }
+
+  .celebration-label::before {
+    content: '';
+    display: block;
+    width: 28px; height: 2px;
+    background: var(--havas-pink);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255,0,128,0.8);
+  }
+
+  .employee-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 5.5vw, 58px);
+    color: var(--havas-white);
+    line-height: 1.05;
+    margin-bottom: 22px;
+    font-style: italic;
+    text-shadow: 0 0 40px rgba(255,255,255,0.2);
+    transition: opacity 0.4s;
+  }
+
+  .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, #FF0080, #8B00FF);
+    margin-bottom: 22px;
+    transform: skewX(calc(-1 * var(--angle)));
+    box-shadow: 0 0 10px rgba(255,0,128,0.7);
+  }
+
+  .accomplishment {
+    font-size: clamp(13px, 1.6vw, 16px);
+    font-weight: 300;
+    color: var(--havas-warm);
+    line-height: 1.65;
+    max-width: 480px;
+    letter-spacing: 0.01em;
+    transition: opacity 0.4s;
+  }
+
+  .right-panel {
+    position: absolute;
+    top: 0; right: 0;
+    width: 200px; height: 100%;
+    z-index: 5;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+  }
+
+  .star-icon {
+    font-size: 36px;
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    animation: spinPulse 3s ease-in-out infinite;
+    text-shadow: 0 0 20px white;
+  }
+
+  @keyframes spinPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(15deg); }
+  }
+
+  .celebrate-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 13px;
+    letter-spacing: 0.3em;
+    color: rgba(255,255,255,1);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+  }
+
+  /* Progress bar on screen */
+  .progress-bar-wrap {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 62%; height: 4px;
+    z-index: 4;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    width: 0%;
+    transition: width linear;
+  }
+
+  .quarter-badge {
+    position: absolute;
+    bottom: 16px; left: 52px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 14px;
+  }
+
+  .quarter-text {
+    font-size: 10px;
+    font-weight: 500;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.55);
+    text-transform: uppercase;
+  }
+
+  .dot-sep {
+    width: 3px; height: 3px;
+    border-radius: 50%;
+    background: var(--havas-pink);
+    flex-shrink: 0;
+    box-shadow: 0 0 6px rgba(255,0,128,0.8);
+  }
+
+  /* Counter badge on screen */
+  .counter-badge {
+    position: absolute;
+    top: 38px; right: 210px;
+    z-index: 10;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ── PLAYBACK CONTROLS ── */
+  .playback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+    z-index: 10;
+  }
+
+  .pb-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .pb-btn:hover { background: rgba(255,0,128,0.25); box-shadow: 0 0 14px rgba(255,0,128,0.4); }
+
+  .pb-btn.play-pause {
+    width: 54px; height: 54px;
+    font-size: 20px;
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    border: none;
+    box-shadow: 0 0 20px rgba(255,0,128,0.5);
+  }
+  .pb-btn.play-pause:hover { box-shadow: 0 0 35px rgba(255,0,128,0.8); }
+
+  .pb-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Speed selector */
+  .speed-select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  /* ── UPLOAD ZONE ── */
+  .upload-section {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 32px;
+    z-index: 10;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,0,128,0.5);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .drop-zone {
+    border: 2px dashed rgba(255,0,128,0.35);
+    border-radius: 4px;
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--havas-pink);
+    background: rgba(255,0,128,0.06);
+    box-shadow: 0 0 20px rgba(255,0,128,0.15);
+  }
+
+  .drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drop-icon { font-size: 32px; margin-bottom: 10px; }
+
+  .drop-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--havas-white);
+    margin-bottom: 6px;
+  }
+
+  .drop-sub {
+    font-size: 11px;
+    color: var(--havas-mid);
+    letter-spacing: 0.05em;
+  }
+
+  .drop-sub strong {
+    color: var(--havas-pink-light);
+  }
+
+  /* Column mapper */
+  .mapper {
+    display: none;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .mapper.visible { display: flex; }
+
+  .mapper-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .mapper-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--havas-pink);
+    text-transform: uppercase;
+  }
+
+  .mapper select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    padding: 10px 14px;
+    color: var(--havas-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .mapper select:focus { border-color: var(--havas-pink); }
+
+  /* Load button */
+  .btn {
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    color: white;
+    border: none;
+    padding: 13px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: skewX(calc(-1 * var(--angle)));
+    transition: opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(255,0,128,0.55);
+    align-self: flex-end;
+  }
+
+  .btn span { display: inline-block; transform: skewX(var(--angle)); }
+  .btn:hover { opacity: 0.9; box-shadow: 0 0 35px rgba(255,0,128,0.8); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* Loaded list summary */
+  .loaded-summary {
+    display: none;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(255,0,128,0.07);
+    border: 1px solid rgba(255,0,128,0.2);
+    border-radius: 4px;
+  }
+
+  .loaded-summary.visible { display: flex; }
+
+  .loaded-info {
+    font-size: 13px;
+    color: var(--havas-warm);
+  }
+
+  .loaded-info strong { color: var(--havas-pink-light); }
+
+  .clear-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    padding: 6px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .clear-btn:hover { color: var(--havas-pink); border-color: var(--havas-pink); }
+
+  /* Mini cards */
+  .cards-section {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 28px;
+    z-index: 10;
+  }
+
+  .cards-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,0,128,0.3) transparent;
+  }
+
+  .mini-card {
+    flex-shrink: 0;
+    width: 200px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--havas-purple-light);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: background 0.2s, border-left-color 0.2s, box-shadow 0.2s;
+  }
+
+  .mini-card:hover, .mini-card.active {
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--havas-pink);
+    box-shadow: 0 0 16px rgba(255,0,128,0.2);
+  }
+
+  .mini-card.active { border-left-color: var(--havas-gold); }
+
+  .mini-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--havas-white);
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .mini-card-dept {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .mini-card-text {
+    font-size: 10px;
+    color: var(--havas-mid);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    color: white;
+    padding: 12px 28px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    z-index: 999;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+    box-shadow: 0 0 24px rgba(255,0,128,0.5);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+</style>
+</head>
+<body>
+
+<!-- ── MAIN SCREEN ── -->
+<div class="screen" id="mainScreen">
+  <div class="starburst"></div>
+  <div class="angle-bar"></div>
+  <div class="angle-bar-2"></div>
+  <div class="bottom-line"></div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+  <div class="brand-area">
+    <div class="havas-wordmark">Havas</div>
+    <div class="program-label">Something to Celebrate</div>
+  </div>
+
+  <div class="counter-badge" id="counterBadge">1 / 1</div>
+
+  <div class="content">
+    <div class="celebration-label">Celebrating</div>
+    <div class="employee-name" id="displayName">Upload your Excel file below</div>
+    <div class="divider"></div>
+    <div class="accomplishment" id="displayText">Load your spreadsheet to get started. Your full list will auto-rotate on screen — or use the controls to navigate manually.</div>
+  </div>
+
+  <div class="right-panel">
+    <div class="star-icon">✦</div>
+    <div class="celebrate-text">Something to Celebrate</div>
+  </div>
+
+  <div class="quarter-badge">
+    <span class="quarter-text" id="displayQuarter">Q1 2026</span>
+    <div class="dot-sep"></div>
+    <span class="quarter-text" id="displayDept">Havas</span>
+  </div>
+</div>
+
+<!-- ── PLAYBACK CONTROLS ── -->
+<div class="playback">
+  <button class="pb-btn" onclick="prevEntry()" title="Previous">&#9664;</button>
+  <div class="pb-label" id="pbLabel">No data</div>
+  <button class="pb-btn play-pause" id="playPauseBtn" onclick="togglePlay()" title="Play / Pause">&#9654;</button>
+  <div class="pb-label"></div>
+  <button class="pb-btn" onclick="nextEntry()" title="Next">&#9654;&#9654;</button>
+  <select class="speed-select" id="speedSelect" onchange="changeSpeed()">
+    <option value="5000">5 sec</option>
+    <option value="7000" selected>7 sec</option>
+    <option value="10000">10 sec</option>
+    <option value="15000">15 sec</option>
+    <option value="20000">20 sec</option>
+  </select>
+</div>
+
+<!-- ── UPLOAD SECTION ── -->
+<div class="upload-section">
+  <div class="section-label">✦ &nbsp; Upload your Excel file &nbsp; ✦</div>
+
+  <div class="drop-zone" id="dropZone">
+    <input type="file" id="fileInput" accept=".xlsx,.xls,.csv" onchange="handleFile(this.files[0])">
+    <div class="drop-icon">📊</div>
+    <div class="drop-title">Drop your Excel file here, or click to browse</div>
+    <div class="drop-sub">Supports <strong>.xlsx</strong>, <strong>.xls</strong>, <strong>.csv</strong> — all rows load automatically</div>
+  </div>
+
+  <!-- Column Mapper -->
+  <div class="mapper" id="columnMapper">
+    <div class="mapper-field">
+      <div class="mapper-label">Name column</div>
+      <select id="colName"><option value="">— select —</option></select>
+    </div>
+    <div class="mapper-field">
+      <div class="mapper-label">Message column</div>
+      <select id="colMessage"><option value="">— select —</option></select>
+    </div>
+    <div class="mapper-field">
+      <div class="mapper-label">Quarter column <span style="opacity:0.5;font-size:9px">(optional)</span></div>
+      <select id="colQuarter"><option value="">— none —</option></select>
+    </div>
+    <div class="mapper-field">
+      <div class="mapper-label">Department column <span style="opacity:0.5;font-size:9px">(optional)</span></div>
+      <select id="colDept"><option value="">— none —</option></select>
+    </div>
+    <button class="btn" id="loadBtn" onclick="loadData()"><span>Load onto Display</span></button>
+  </div>
+
+  <!-- Loaded summary -->
+  <div class="loaded-summary" id="loadedSummary">
+    <div class="loaded-info" id="loadedInfo">—</div>
+    <button class="clear-btn" onclick="clearData()">✕ Clear & upload new file</button>
+  </div>
+</div>
+
+<!-- ── MINI CARDS ── -->
+<div class="cards-section">
+  <div class="section-label" id="cardsLabel" style="display:none">✦ &nbsp; Click any card to jump to that person &nbsp; ✦</div>
+  <div class="cards-scroll" id="cardsRow"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── State ──
+  let entries = [];
+  let currentIndex = 0;
+  let isPlaying = false;
+  let timer = null;
+  let progressTimer = null;
+  let rawRows = [];
+  let headers = [];
+
+  const INTERVAL_DEFAULT = 7000;
+  let interval = INTERVAL_DEFAULT;
+
+  // ── Display update ──
+  function setDisplay(index, animate = true) {
+    if (!entries.length) return;
+    currentIndex = ((index % entries.length) + entries.length) % entries.length;
+    const e = entries[currentIndex];
+
+    const nameEl = document.getElementById('displayName');
+    const textEl = document.getElementById('displayText');
+    const qEl    = document.getElementById('displayQuarter');
+    const dEl    = document.getElementById('displayDept');
+    const badge  = document.getElementById('counterBadge');
+    const label  = document.getElementById('pbLabel');
+
+    if (animate) {
+      nameEl.style.opacity = 0;
+      textEl.style.opacity = 0;
+      setTimeout(() => {
+        nameEl.textContent = e.name || 'Anonymous';
+        textEl.textContent = e.message || '';
+        qEl.textContent    = e.quarter || 'Q1 2026';
+        dEl.textContent    = e.dept || 'Havas';
+        nameEl.style.transition = 'opacity 0.5s';
+        textEl.style.transition = 'opacity 0.5s';
+        nameEl.style.opacity = 1;
+        textEl.style.opacity = 1;
+      }, 250);
+    } else {
+      nameEl.textContent = e.name || 'Anonymous';
+      textEl.textContent = e.message || '';
+      qEl.textContent    = e.quarter || 'Q1 2026';
+      dEl.textContent    = e.dept || 'Havas';
+    }
+
+    badge.textContent = `${currentIndex + 1} / ${entries.length}`;
+    label.textContent = `${currentIndex + 1} / ${entries.length}`;
+
+    // highlight active card
+    document.querySelectorAll('.mini-card').forEach((c, i) => {
+      c.classList.toggle('active', i === currentIndex);
+    });
+
+    // scroll card into view
+    const cards = document.querySelectorAll('.mini-card');
+    if (cards[currentIndex]) {
+      cards[currentIndex].scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+    }
+
+    resetProgress();
+  }
+
+  // ── Progress bar ──
+  function resetProgress() {
+    clearInterval(progressTimer);
+    const bar = document.getElementById('progressBar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    if (isPlaying) {
+      setTimeout(() => {
+        bar.style.transition = `width ${interval}ms linear`;
+        bar.style.width = '100%';
+      }, 30);
+      progressTimer = setTimeout(() => {}, interval);
+    }
+  }
+
+  // ── Playback ──
+  function startPlay() {
+    isPlaying = true;
+    document.getElementById('playPauseBtn').innerHTML = '&#9646;&#9646;';
+    resetProgress();
+    timer = setInterval(() => {
+      setDisplay(currentIndex + 1);
+    }, interval);
+  }
+
+  function pausePlay() {
+    isPlaying = false;
+    document.getElementById('playPauseBtn').innerHTML = '&#9654;';
+    clearInterval(timer);
+    clearInterval(progressTimer);
+    const bar = document.getElementById('progressBar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+  }
+
+  function togglePlay() {
+    if (!entries.length) { showToast('Load a file first!'); return; }
+    isPlaying ? pausePlay() : startPlay();
+  }
+
+  function nextEntry() {
+    if (!entries.length) return;
+    pausePlay();
+    setDisplay(currentIndex + 1);
+  }
+
+  function prevEntry() {
+    if (!entries.length) return;
+    pausePlay();
+    setDisplay(currentIndex - 1);
+  }
+
+  function changeSpeed() {
+    interval = parseInt(document.getElementById('speedSelect').value);
+    if (isPlaying) { pausePlay(); startPlay(); }
+  }
+
+  // ── File handling ──
+  function handleFile(file) {
+    if (!file) return;
+    const reader = new FileReader();
+    reader.onload = function(e) {
+      const data = new Uint8Array(e.target.result);
+      const wb = XLSX.read(data, { type: 'array' });
+      const ws = wb.Sheets[wb.SheetNames[0]];
+      rawRows = XLSX.utils.sheet_to_json(ws, { header: 1 });
+
+      if (rawRows.length < 2) { showToast('File appears empty!'); return; }
+
+      headers = rawRows[0].map(h => String(h || '').trim());
+      populateMappers(headers);
+      document.getElementById('columnMapper').classList.add('visible');
+      autoDetectColumns(headers);
+    };
+    reader.readAsArrayBuffer(file);
+  }
+
+  function populateMappers(cols) {
+    ['colName','colMessage','colQuarter','colDept'].forEach(id => {
+      const sel = document.getElementById(id);
+      const firstOpt = sel.options[0];
+      sel.innerHTML = '';
+      sel.appendChild(firstOpt);
+      cols.forEach((c, i) => {
+        const opt = document.createElement('option');
+        opt.value = i;
+        opt.textContent = c;
+        sel.appendChild(opt);
+      });
+    });
+  }
+
+  function autoDetectColumns(cols) {
+    const lc = cols.map(c => c.toLowerCase());
+    const find = (keywords) => {
+      for (const kw of keywords) {
+        const idx = lc.findIndex(c => c.includes(kw));
+        if (idx >= 0) return idx;
+      }
+      return '';
+    };
+
+    document.getElementById('colName').value    = find(['name','employee','person','who']);
+    document.getElementById('colMessage').value = find(['message','celebrat','text','note','story','reason','what']);
+    document.getElementById('colQuarter').value = find(['quarter','q1','q2','q3','q4','period','date']);
+    document.getElementById('colDept').value    = find(['dept','department','team','division','region','office']);
+  }
+
+  function loadData() {
+    const ni = document.getElementById('colName').value;
+    const mi = document.getElementById('colMessage').value;
+    const qi = document.getElementById('colQuarter').value;
+    const di = document.getElementById('colDept').value;
+
+    if (ni === '' || mi === '') { showToast('Please map Name and Message columns'); return; }
+
+    entries = [];
+    for (let r = 1; r < rawRows.length; r++) {
+      const row = rawRows[r];
+      const name = String(row[ni] || '').trim();
+      const message = String(row[mi] || '').trim();
+      if (!name && !message) continue;
+      entries.push({
+        name,
+        message,
+        quarter: qi !== '' ? String(row[qi] || 'Q1 2026').trim() : 'Q1 2026',
+        dept:    di !== '' ? String(row[di] || 'Havas').trim() : 'Havas',
+      });
+    }
+
+    if (!entries.length) { showToast('No valid rows found!'); return; }
+
+    buildCards();
+    setDisplay(0, false);
+    document.getElementById('columnMapper').classList.remove('visible');
+    document.getElementById('loadedSummary').classList.add('visible');
+    document.getElementById('loadedInfo').innerHTML = `<strong>${entries.length} celebration${entries.length > 1 ? 's' : ''}</strong> loaded and ready to display`;
+    document.getElementById('cardsLabel').style.display = 'block';
+    startPlay();
+    showToast(`${entries.length} entries loaded! 🎉`);
+  }
+
+  function clearData() {
+    pausePlay();
+    entries = [];
+    rawRows = [];
+    headers = [];
+    currentIndex = 0;
+    document.getElementById('loadedSummary').classList.remove('visible');
+    document.getElementById('columnMapper').classList.remove('visible');
+    document.getElementById('cardsRow').innerHTML = '';
+    document.getElementById('cardsLabel').style.display = 'none';
+    document.getElementById('counterBadge').textContent = '1 / 0';
+    document.getElementById('pbLabel').textContent = 'No data';
+    document.getElementById('displayName').textContent = 'Upload your Excel file below';
+    document.getElementById('displayText').textContent = 'Load your spreadsheet to get started.';
+    document.getElementById('fileInput').value = '';
+    const bar = document.getElementById('progressBar');
+    bar.style.transition = 'none'; bar.style.width = '0%';
+  }
+
+  // ── Build mini cards ──
+  function buildCards() {
+    const row = document.getElementById('cardsRow');
+    row.innerHTML = '';
+    entries.forEach((e, i) => {
+      const card = document.createElement('div');
+      card.className = 'mini-card';
+      card.innerHTML = `
+        <div class="mini-card-name">${e.name || 'Anonymous'}</div>
+        ${e.dept ? `<div class="mini-card-dept">${e.dept}</div>` : ''}
+        <div class="mini-card-text">${(e.message || '').substring(0, 68)}${e.message && e.message.length > 68 ? '…' : ''}</div>
+      `;
+      card.addEventListener('click', () => {
+        pausePlay();
+        setDisplay(i);
+      });
+      row.appendChild(card);
+    });
+  }
+
+  // ── Drag & drop ──
+  const dz = document.getElementById('dropZone');
+  dz.addEventListener('dragover', e => { e.preventDefault(); dz.classList.add('dragover'); });
+  dz.addEventListener('dragleave', () => dz.classList.remove('dragover'));
+  dz.addEventListener('drop', e => {
+    e.preventDefault();
+    dz.classList.remove('dragover');
+    if (e.dataTransfer.files[0]) handleFile(e.dataTransfer.files[0]);
+  });
+
+  // ── Toast ──
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+
+</body>
+</html>
