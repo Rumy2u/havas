@@ -1,0 +1,1012 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Something to Celebrate — Havas</title>
+<style>
+@import url('https://fonts.googleapis.com/css2?family=Bebas+Neue&family=DM+Sans:wght@300;400;500;600&family=DM+Serif+Display:ital@0;1&display=swap');
+</style>
+<!-- SheetJS removed: data is embedded -->
+<style>
+  *, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
+
+  :root {
+    --havas-pink: #FF0080;
+    --havas-pink-light: #FF4DAA;
+    --havas-pink-glow: #FF69B4;
+    --havas-purple: #8B00FF;
+    --havas-purple-light: #B44FFF;
+    --havas-gold: #FFD600;
+    --havas-white-acc: #FFE8F4;
+    --havas-dark: #12000A;
+    --havas-white: #FFFFFF;
+    --havas-warm: #FFE8F4;
+    --havas-mid: #C090A8;
+    --angle: 25deg;
+  }
+
+  body {
+    background: var(--havas-dark);
+    font-family: 'DM Sans', sans-serif;
+    min-height: 100vh;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: flex-start;
+    padding: 40px 20px;
+    overflow-x: hidden;
+    position: relative;
+  }
+
+  body::after {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background: 
+      radial-gradient(ellipse 60% 50% at 10% 20%, rgba(255,0,128,0.22) 0%, transparent 60%),
+      radial-gradient(ellipse 50% 60% at 90% 80%, rgba(139,0,255,0.2) 0%, transparent 60%),
+      radial-gradient(ellipse 40% 40% at 50% 50%, rgba(180,79,255,0.1) 0%, transparent 70%);
+    pointer-events: none;
+    z-index: 0;
+    animation: bgShift 8s ease-in-out infinite alternate;
+  }
+
+  @keyframes bgShift {
+    from { opacity: 0.7; }
+    to { opacity: 1; }
+  }
+
+  body::before {
+    content: '';
+    position: fixed;
+    inset: 0;
+    background-image: 
+      radial-gradient(circle, rgba(255,0,128,0.6) 1.5px, transparent 1.5px),
+      radial-gradient(circle, rgba(139,0,255,0.5) 1px, transparent 1px),
+      radial-gradient(circle, rgba(180,79,255,0.4) 1px, transparent 1px);
+    background-size: 80px 80px, 120px 120px, 60px 60px;
+    background-position: 10px 10px, 40px 40px, 25px 65px;
+    pointer-events: none;
+    z-index: 0;
+    opacity: 0.35;
+  }
+
+  .screen {
+    position: relative;
+    width: 100%;
+    max-width: 960px;
+    aspect-ratio: 16/9;
+    background: linear-gradient(135deg, #0F0015 0%, #12000A 50%, #0A001A 100%);
+    overflow: hidden;
+    z-index: 1;
+    box-shadow: 0 0 80px rgba(255,0,128,0.35), 0 0 160px rgba(139,0,255,0.2), 0 30px 60px rgba(0,0,0,0.5);
+    border: 1px solid rgba(255,255,255,0.08);
+  }
+
+  .angle-bar {
+    position: absolute;
+    top: 0; right: -40px;
+    width: 200px; height: 100%;
+    background: linear-gradient(180deg, #FF0080 0%, #C030D0 50%, #8B00FF 100%);
+    transform: skewX(calc(-1 * var(--angle)));
+    transform-origin: top right;
+    z-index: 1;
+  }
+
+  .angle-bar-2 {
+    position: absolute;
+    top: 0; right: 138px;
+    width: 14px; height: 100%;
+    background: rgba(139,0,255,0.4);
+    transform: skewX(calc(-1 * var(--angle)));
+    z-index: 2;
+  }
+
+  .bottom-line {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 62%; height: 4px;
+    background: linear-gradient(90deg, #FF0080, #C030D0, #8B00FF);
+    z-index: 3;
+  }
+
+  .starburst {
+    position: absolute;
+    top: -60px; left: -60px;
+    width: 200px; height: 200px;
+    background: radial-gradient(circle, rgba(255,0,128,0.25) 0%, transparent 70%);
+    border-radius: 50%;
+    z-index: 0;
+    animation: starPulse 3s ease-in-out infinite;
+  }
+
+  @keyframes starPulse {
+    0%, 100% { transform: scale(1); opacity: 0.6; }
+    50% { transform: scale(1.3); opacity: 1; }
+  }
+
+  .brand-area {
+    position: absolute;
+    top: 28px; left: 52px;
+    z-index: 10;
+  }
+
+  .havas-wordmark {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 42px;
+    letter-spacing: 0.35em;
+    color: var(--havas-white);
+    opacity: 0.85;
+    text-transform: uppercase;
+  }
+
+  .program-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 22px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    color: var(--havas-pink);
+    text-transform: uppercase;
+    margin-top: 6px;
+    text-shadow: 0 0 12px rgba(255,0,128,0.7);
+  }
+
+  .content {
+    position: absolute;
+    top: 105px;
+    left: 52px;
+    bottom: 52px;
+    width: 56%;
+    z-index: 10;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+  }
+
+  .celebration-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.3em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    margin-bottom: 18px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    text-shadow: 0 0 16px rgba(255,0,128,0.8);
+  }
+
+  .celebration-label::before {
+    content: '';
+    display: block;
+    width: 28px; height: 2px;
+    background: var(--havas-pink);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255,0,128,0.8);
+  }
+
+  .employee-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: clamp(38px, 5.5vw, 58px);
+    color: var(--havas-white);
+    line-height: 1.05;
+    font-style: italic;
+    text-shadow: 0 0 40px rgba(255,255,255,0.2);
+    transition: opacity 0.4s;
+  }
+
+  .name-dept-row {
+    display: flex;
+    align-items: baseline;
+    gap: 18px;
+    margin-bottom: 18px;
+    flex-wrap: wrap;
+  }
+
+  .name-dept-label {
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,77,170,0.6);
+    white-space: nowrap;
+  }
+
+  .divider {
+    width: 48px; height: 3px;
+    background: linear-gradient(90deg, #FF0080, #8B00FF);
+    margin-bottom: 22px;
+    transform: skewX(calc(-1 * var(--angle)));
+    box-shadow: 0 0 10px rgba(255,0,128,0.7);
+  }
+
+  .accomplishment {
+    font-size: clamp(13px, 1.6vw, 16px);
+    font-weight: 300;
+    color: var(--havas-warm);
+    line-height: 1.65;
+    max-width: 480px;
+    letter-spacing: 0.01em;
+    transition: opacity 0.4s;
+  }
+
+  .right-panel {
+    position: absolute;
+    top: 0; right: 0;
+    width: 160px; height: 100%;
+    z-index: 6;
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    gap: 12px;
+    pointer-events: none;
+  }
+
+  .star-icon {
+    font-size: 36px;
+    filter: brightness(0) invert(1);
+    opacity: 1;
+    animation: spinPulse 3s ease-in-out infinite;
+    text-shadow: 0 0 20px white;
+  }
+
+  @keyframes spinPulse {
+    0%, 100% { transform: scale(1) rotate(0deg); }
+    50% { transform: scale(1.2) rotate(15deg); }
+  }
+
+  .celebrate-text {
+    font-family: 'Bebas Neue', sans-serif;
+    font-size: 22px;
+    letter-spacing: 0.35em;
+    color: rgba(255,255,255,1);
+    text-transform: uppercase;
+    writing-mode: vertical-rl;
+    transform: rotate(180deg);
+    text-shadow: 0 0 20px rgba(255,255,255,0.6);
+  }
+
+  /* Progress bar on screen */
+  .progress-bar-wrap {
+    position: absolute;
+    bottom: 0; left: 0;
+    width: 62%; height: 4px;
+    z-index: 4;
+  }
+  .progress-bar-fill {
+    height: 100%;
+    background: rgba(255,255,255,0.5);
+    width: 0%;
+    transition: width linear;
+  }
+
+  .quarter-badge {
+    position: absolute;
+    bottom: 18px; left: 52px;
+    z-index: 10;
+    display: flex;
+    align-items: center;
+    gap: 16px;
+  }
+
+  .quarter-text {
+    font-size: 15px;
+    font-weight: 600;
+    letter-spacing: 0.25em;
+    color: rgba(255,255,255,0.75);
+    text-transform: uppercase;
+  }
+
+  .dot-sep {
+    width: 5px; height: 5px;
+    border-radius: 50%;
+    background: var(--havas-pink);
+    flex-shrink: 0;
+    box-shadow: 0 0 8px rgba(255,0,128,1);
+  }
+
+  /* Counter badge on screen */
+  .counter-badge {
+    position: absolute;
+    top: 28px; right: 185px;
+    z-index: 10;
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.45);
+    font-weight: 500;
+    text-transform: uppercase;
+  }
+
+  /* ── PLAYBACK CONTROLS ── */
+  .playback {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 14px;
+    margin-top: 22px;
+    z-index: 10;
+  }
+
+  .pb-btn {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: white;
+    width: 44px; height: 44px;
+    border-radius: 50%;
+    font-size: 16px;
+    cursor: pointer;
+    display: flex; align-items: center; justify-content: center;
+    transition: background 0.2s, box-shadow 0.2s;
+  }
+  .pb-btn:hover { background: rgba(255,0,128,0.25); box-shadow: 0 0 14px rgba(255,0,128,0.4); }
+
+  .pb-btn.play-pause {
+    width: 54px; height: 54px;
+    font-size: 20px;
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    border: none;
+    box-shadow: 0 0 20px rgba(255,0,128,0.5);
+  }
+  .pb-btn.play-pause:hover { box-shadow: 0 0 35px rgba(255,0,128,0.8); }
+
+  .pb-label {
+    font-size: 10px;
+    letter-spacing: 0.2em;
+    color: rgba(255,255,255,0.4);
+    text-transform: uppercase;
+    min-width: 80px;
+    text-align: center;
+  }
+
+  /* Speed selector */
+  .speed-select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.15);
+    color: rgba(255,255,255,0.7);
+    padding: 6px 12px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    border-radius: 2px;
+    outline: none;
+    cursor: pointer;
+  }
+
+  /* ── UPLOAD ZONE ── */
+  .upload-section {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 32px;
+    z-index: 10;
+  }
+
+  .section-label {
+    font-size: 10px;
+    letter-spacing: 0.25em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    text-shadow: 0 0 10px rgba(255,0,128,0.5);
+    margin-bottom: 16px;
+    text-align: center;
+  }
+
+  .drop-zone {
+    border: 2px dashed rgba(255,0,128,0.35);
+    border-radius: 4px;
+    padding: 36px 24px;
+    text-align: center;
+    cursor: pointer;
+    transition: border-color 0.2s, background 0.2s;
+    position: relative;
+    background: rgba(255,255,255,0.02);
+  }
+
+  .drop-zone:hover, .drop-zone.dragover {
+    border-color: var(--havas-pink);
+    background: rgba(255,0,128,0.06);
+    box-shadow: 0 0 20px rgba(255,0,128,0.15);
+  }
+
+  .drop-zone input[type="file"] {
+    position: absolute;
+    inset: 0;
+    opacity: 0;
+    cursor: pointer;
+    width: 100%;
+    height: 100%;
+  }
+
+  .drop-icon { font-size: 32px; margin-bottom: 10px; }
+
+  .drop-title {
+    font-size: 14px;
+    font-weight: 500;
+    color: var(--havas-white);
+    margin-bottom: 6px;
+  }
+
+  .drop-sub {
+    font-size: 11px;
+    color: var(--havas-mid);
+    letter-spacing: 0.05em;
+  }
+
+  .drop-sub strong {
+    color: var(--havas-pink-light);
+  }
+
+  /* Column mapper */
+  .mapper {
+    display: none;
+    margin-top: 20px;
+    background: rgba(255,255,255,0.03);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-radius: 4px;
+    padding: 24px;
+    gap: 20px;
+    flex-wrap: wrap;
+  }
+
+  .mapper.visible { display: flex; }
+
+  .mapper-field {
+    display: flex;
+    flex-direction: column;
+    gap: 8px;
+    flex: 1;
+    min-width: 160px;
+  }
+
+  .mapper-label {
+    font-size: 10px;
+    font-weight: 700;
+    letter-spacing: 0.2em;
+    color: var(--havas-pink);
+    text-transform: uppercase;
+  }
+
+  .mapper select {
+    background: rgba(255,255,255,0.06);
+    border: 1px solid rgba(255,255,255,0.12);
+    border-radius: 2px;
+    padding: 10px 14px;
+    color: var(--havas-white);
+    font-family: 'DM Sans', sans-serif;
+    font-size: 13px;
+    outline: none;
+    cursor: pointer;
+    transition: border-color 0.2s;
+  }
+
+  .mapper select:focus { border-color: var(--havas-pink); }
+
+  /* Load button */
+  .btn {
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    color: white;
+    border: none;
+    padding: 13px 36px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    font-weight: 700;
+    letter-spacing: 0.25em;
+    text-transform: uppercase;
+    cursor: pointer;
+    transform: skewX(calc(-1 * var(--angle)));
+    transition: opacity 0.2s, box-shadow 0.2s;
+    box-shadow: 0 0 20px rgba(255,0,128,0.55);
+    align-self: flex-end;
+  }
+
+  .btn span { display: inline-block; transform: skewX(var(--angle)); }
+  .btn:hover { opacity: 0.9; box-shadow: 0 0 35px rgba(255,0,128,0.8); }
+  .btn:disabled { opacity: 0.35; cursor: not-allowed; }
+
+  /* Loaded list summary */
+  .loaded-summary {
+    display: none;
+    margin-top: 20px;
+    align-items: center;
+    justify-content: space-between;
+    flex-wrap: wrap;
+    gap: 12px;
+    padding: 16px 20px;
+    background: rgba(255,0,128,0.07);
+    border: 1px solid rgba(255,0,128,0.2);
+    border-radius: 4px;
+  }
+
+  .loaded-summary.visible { display: flex; }
+
+  .loaded-info {
+    font-size: 13px;
+    color: var(--havas-warm);
+  }
+
+  .loaded-info strong { color: var(--havas-pink-light); }
+
+  .clear-btn {
+    background: none;
+    border: 1px solid rgba(255,255,255,0.2);
+    color: rgba(255,255,255,0.5);
+    padding: 6px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: color 0.2s, border-color 0.2s;
+  }
+
+  .clear-btn:hover { color: var(--havas-pink); border-color: var(--havas-pink); }
+
+  /* Mini cards */
+  .cards-section {
+    width: 100%;
+    max-width: 960px;
+    margin-top: 28px;
+    z-index: 10;
+  }
+
+  .cards-scroll {
+    display: flex;
+    gap: 12px;
+    overflow-x: auto;
+    padding-bottom: 8px;
+    scrollbar-width: thin;
+    scrollbar-color: rgba(255,0,128,0.3) transparent;
+  }
+
+  .mini-card {
+    flex-shrink: 0;
+    width: 200px;
+    background: rgba(255,255,255,0.04);
+    border: 1px solid rgba(255,255,255,0.08);
+    border-left: 3px solid var(--havas-purple-light);
+    padding: 16px 18px;
+    cursor: pointer;
+    transition: background 0.2s, border-left-color 0.2s, box-shadow 0.2s;
+  }
+
+  .mini-card:hover, .mini-card.active {
+    background: rgba(255,255,255,0.08);
+    border-left-color: var(--havas-pink);
+    box-shadow: 0 0 16px rgba(255,0,128,0.2);
+  }
+
+  .mini-card.active { border-left-color: var(--havas-gold); }
+
+  .mini-card-name {
+    font-family: 'DM Serif Display', serif;
+    font-size: 14px;
+    color: var(--havas-white);
+    font-style: italic;
+    margin-bottom: 5px;
+  }
+
+  .mini-card-dept {
+    font-size: 9px;
+    letter-spacing: 0.15em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    margin-bottom: 6px;
+  }
+
+  .mini-card-text {
+    font-size: 10px;
+    color: var(--havas-mid);
+    font-weight: 300;
+    line-height: 1.5;
+  }
+
+  .mini-card.card-hint {
+    opacity: 0.45;
+    justify-content: center;
+    align-items: center;
+    font-size: 11px;
+    letter-spacing: 0.15em;
+    color: var(--havas-pink-light);
+    text-transform: uppercase;
+    font-weight: 600;
+    width: 110px;
+  }
+
+  .mini-card.card-hint:hover { opacity: 0.9; }
+
+  /* Toast */
+  .toast {
+    position: fixed;
+    bottom: 30px; left: 50%;
+    transform: translateX(-50%) translateY(80px);
+    background: linear-gradient(135deg, #FF0080, #8B00FF);
+    color: white;
+    padding: 12px 28px;
+    font-size: 12px;
+    font-weight: 600;
+    letter-spacing: 0.15em;
+    text-transform: uppercase;
+    border-radius: 2px;
+    z-index: 999;
+    opacity: 0;
+    transition: transform 0.4s cubic-bezier(0.22,1,0.36,1), opacity 0.4s;
+    box-shadow: 0 0 24px rgba(255,0,128,0.5);
+  }
+  .toast.show { transform: translateX(-50%) translateY(0); opacity: 1; }
+
+  /* ── SIGNAGE / FULLSCREEN MODE ── */
+  .signage-btn {
+    position: fixed;
+    bottom: 20px; right: 20px;
+    z-index: 1000;
+    background: rgba(255,0,128,0.15);
+    border: 1px solid rgba(255,0,128,0.4);
+    color: rgba(255,255,255,0.7);
+    padding: 8px 16px;
+    font-family: 'DM Sans', sans-serif;
+    font-size: 10px;
+    font-weight: 600;
+    letter-spacing: 0.2em;
+    text-transform: uppercase;
+    cursor: pointer;
+    border-radius: 2px;
+    transition: all 0.2s;
+    backdrop-filter: blur(8px);
+  }
+  .signage-btn:hover { background: rgba(255,0,128,0.35); color: white; border-color: var(--havas-pink); }
+
+  /* Signage mode — screen fills entire viewport */
+  body.signage-mode {
+    padding: 0;
+    justify-content: center;
+    overflow: hidden;
+    height: 100vh;
+  }
+
+  body.signage-mode .screen {
+    max-width: 100vw;
+    width: 100vw;
+    height: 100vh;
+    aspect-ratio: unset;
+    border-radius: 0;
+    box-shadow: none;
+    border: none;
+  }
+
+  body.signage-mode .playback,
+  body.signage-mode .upload-section,
+  body.signage-mode .cards-section {
+    display: none !important;
+  }
+
+  /* Signage mode — scale up all text proportionally */
+  body.signage-mode .havas-wordmark { font-size: 4.2vw; }
+  body.signage-mode .program-label  { font-size: 2.2vw; }
+  body.signage-mode .brand-area     { top: 4vh; left: 5vw; }
+  body.signage-mode .content        { top: 13vh; left: 5vw; bottom: 8vh; width: 58%; }
+  body.signage-mode .employee-name  { font-size: clamp(48px, 7vw, 90px); }
+  body.signage-mode .accomplishment { font-size: clamp(16px, 1.8vw, 26px); max-width: 60vw; }
+  body.signage-mode .celebration-label { font-size: 1.1vw; margin-bottom: 2.5vh; }
+  body.signage-mode .quarter-badge  { bottom: 3vh; left: 5vw; gap: 2vw; }
+  body.signage-mode .quarter-text   { font-size: 1.5vw; }
+  body.signage-mode .dot-sep        { width: 0.5vw; height: 0.5vw; }
+  body.signage-mode .counter-badge  { top: 4vh; right: 18vw; font-size: 1vw; }
+  body.signage-mode .celebrate-text { font-size: 2.2vw; letter-spacing: 0.35em; }
+  body.signage-mode .name-dept-label { font-size: 1.3vw; margin-bottom: 0; }
+  body.signage-mode .name-dept-row   { margin-bottom: 2.5vh; }
+  body.signage-mode .star-icon      { font-size: 4vw; }
+  body.signage-mode .right-panel    { width: 16vw; }
+  body.signage-mode .angle-bar      { width: 20vw; right: -4vw; }
+  body.signage-mode .angle-bar-2    { right: 13.5vw; width: 1.2vw; }
+  body.signage-mode .bottom-line    { height: 5px; }
+  body.signage-mode .progress-bar-wrap { height: 5px; }
+  body.signage-mode .divider        { width: 5vw; height: 4px; margin-bottom: 3vh; }
+</style>
+</head>
+<body>
+
+<!-- ── SIGNAGE MODE TOGGLE ── -->
+<button class="signage-btn" id="signageBtn" onclick="toggleSignage()">⛶ Signage Mode</button>
+<div class="screen" id="mainScreen">
+  <div class="starburst"></div>
+  <div class="angle-bar"></div>
+  <div class="angle-bar-2"></div>
+  <div class="bottom-line"></div>
+  <div class="progress-bar-wrap"><div class="progress-bar-fill" id="progressBar"></div></div>
+
+  <div class="brand-area">
+    <div class="havas-wordmark">Havas</div>
+    <div class="program-label">Something to Celebrate</div>
+  </div>
+
+  <div class="counter-badge" id="counterBadge">1 / 1</div>
+
+  <div class="content">
+    <div class="celebration-label">Celebrating</div>
+    <div class="name-dept-row">
+      <div class="employee-name" id="displayName">Upload your Excel file below</div>
+      <span class="name-dept-label" id="displayDept"></span>
+    </div>
+    <div class="divider"></div>
+    <div class="accomplishment" id="displayText">Load your spreadsheet to get started. Your full list will auto-rotate on screen — or use the controls to navigate manually.</div>
+  </div>
+
+  <div class="right-panel">
+    <div class="star-icon">✦</div>
+    <div class="celebrate-text">Something to Celebrate</div>
+  </div>
+
+  <div class="quarter-badge">
+    <span class="quarter-text" id="displayQuarter">Q1 2026</span>
+  </div>
+</div>
+
+<!-- ── PLAYBACK CONTROLS ── -->
+<div class="playback">
+  <button class="pb-btn" onclick="prevEntry()" title="Previous">&#9664;</button>
+  <div class="pb-label" id="pbLabel">No data</div>
+  <button class="pb-btn play-pause" id="playPauseBtn" onclick="togglePlay()" title="Play / Pause">&#9654;</button>
+  <div class="pb-label"></div>
+  <button class="pb-btn" onclick="nextEntry()" title="Next">&#9654;&#9654;</button>
+  <select class="speed-select" id="speedSelect" onchange="changeSpeed()">
+    <option value="5000">5 sec</option>
+    <option value="7000" selected>7 sec</option>
+    <option value="10000">10 sec</option>
+    <option value="15000">15 sec</option>
+    <option value="20000">20 sec</option>
+  </select>
+</div>
+
+<!-- ── MINI CARDS (admin only) ── -->
+<div class="cards-section">
+  <div class="section-label" id="cardsLabel" style="display:none">✦ &nbsp; Click any card to jump to that person &nbsp; ✦</div>
+  <div class="cards-scroll" id="cardsRow"></div>
+</div>
+
+<div class="toast" id="toast"></div>
+
+<script>
+  // ── Embedded data (auto-generated) ──
+  const EMBEDDED_ENTRIES = [{"name": "Bianca Park", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q4 2025", "dept": "Research"}, {"name": "Marcus Sato", "message": "Delivered a pitch-winning strategy deck that secured our largest media account of the year. Her research depth and storytelling were exceptional.", "quarter": "Q4 2025", "dept": "Finance"}, {"name": "Tyler Johnson", "message": "Developed a new influencer vetting framework that's now used company-wide, protecting clients from brand risk.", "quarter": "Q4 2025", "dept": "Events"}, {"name": "Mei Al-Hassan", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q2 2026", "dept": "Finance"}, {"name": "Diego Kowalski", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q2 2025", "dept": "Finance"}, {"name": "Luke Sato", "message": "Designed a new client reporting template that saves each account manager 4 hours per week.", "quarter": "Q3 2025", "dept": "Creative"}, {"name": "Aaliya Fernandez", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Jason Reyes", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q3 2025", "dept": "HR"}, {"name": "Priya Williams", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "Leo Martinez", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q1 2025", "dept": "Events"}, {"name": "Mei Lindberg", "message": "Improved our invoicing process from end to end, cutting payment cycles by an average of 12 days.", "quarter": "Q1 2026", "dept": "Operations"}, {"name": "Leila Williams", "message": "Created a client feedback loop that has increased our renewal rate by identifying issues before they become problems.", "quarter": "Q3 2025", "dept": "Strategy"}, {"name": "Ethan Petrov", "message": "Her feedback on our pitch process helped us close two deals we might have otherwise lost.", "quarter": "Q3 2025", "dept": "Client Services"}, {"name": "Anton Eriksson", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q1 2025", "dept": "Media"}, {"name": "Simone Osei", "message": "Developed a predictive analytics model that improved our media targeting efficiency by 35%.", "quarter": "Q2 2025", "dept": "PR"}, {"name": "Lily Zhang", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q4 2025", "dept": "Technology"}, {"name": "Zoe Tanaka", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q1 2026", "dept": "Media"}, {"name": "Tyler Chen", "message": "Took on additional scope during a colleague's medical leave without complaint and without missing a single deliverable.", "quarter": "Q1 2025", "dept": "Finance"}, {"name": "Mia Kim", "message": "Created a research methodology that cut our campaign briefing time by 30% and improved strategic alignment.", "quarter": "Q1 2026", "dept": "Business Development"}, {"name": "Simone Reyes", "message": "Built a tracking system for our events team that has reduced vendor payment delays by 70%.", "quarter": "Q1 2026", "dept": "Marketing"}, {"name": "Derek Anderson", "message": "Her creative concept for the spring campaign became the benchmark for the client's entire brand refresh.", "quarter": "Q1 2025", "dept": "HR"}, {"name": "Tom Martinez", "message": "Ran back-to-back focus groups for three clients in a single week without dropping the ball on any.", "quarter": "Q2 2025", "dept": "Business Development"}, {"name": "Mia Torres", "message": "Introduced agile sprint planning to the tech team, resulting in faster delivery and clearer priorities.", "quarter": "Q2 2026", "dept": "Events"}, {"name": "Nina Fernandez", "message": "Built a tracking system for our events team that has reduced vendor payment delays by 70%.", "quarter": "Q1 2026", "dept": "HR"}, {"name": "Ingrid Kowalski", "message": "Played a key role in winning a flagship account that represents a significant expansion for our practice.", "quarter": "Q3 2025", "dept": "Technology"}, {"name": "Yuki Hansen", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q2 2025", "dept": "Research"}, {"name": "Leila Singh", "message": "Rebuilt our performance reporting dashboard from scratch — what used to take 3 days now takes 3 hours.", "quarter": "Q2 2025", "dept": "Legal"}, {"name": "Priya Cooper", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q1 2025", "dept": "Creative"}, {"name": "Felix Osei", "message": "Introduced agile sprint planning to the tech team, resulting in faster delivery and clearer priorities.", "quarter": "Q4 2025", "dept": "Events"}, {"name": "David Nakamura", "message": "Designed a new client reporting template that saves each account manager 4 hours per week.", "quarter": "Q2 2025", "dept": "Creative"}, {"name": "Leo Brown", "message": "Consistently delivers above-and-beyond quality on every brief — this quarter was no exception.", "quarter": "Q2 2026", "dept": "Finance"}, {"name": "Amara Vasquez", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q2 2025", "dept": "Media"}, {"name": "Ryan Murphy", "message": "Built strong trust with a notoriously difficult client, turning the relationship into one of our most collaborative.", "quarter": "Q2 2025", "dept": "Legal"}, {"name": "Camille Petrov", "message": "Turned around a struggling client relationship through consistent communication and creative problem-solving — they renewed for two more years.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Anton Thompson", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q4 2025", "dept": "Marketing"}, {"name": "Priya Nkosi", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q1 2026", "dept": "Creative"}, {"name": "Mei Adeyemi", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q2 2026", "dept": "Media"}, {"name": "Amara Fernandez", "message": "Coordinated a last-minute venue change for a flagship event and pulled it off without a single complaint.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Mei Kowalski", "message": "Managed a complex multi-vendor shoot flawlessly, delivering assets two days early and under budget.", "quarter": "Q3 2025", "dept": "Analytics"}, {"name": "Ingrid Anderson", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "Felix Vasquez", "message": "Presented our annual impact report to the board with clarity and confidence — received a standing ovation.", "quarter": "Q1 2025", "dept": "Analytics"}, {"name": "Patrick Kim", "message": "Coordinated a last-minute venue change for a flagship event and pulled it off without a single complaint.", "quarter": "Q2 2025", "dept": "Strategy"}, {"name": "Patrick Hansen", "message": "Introduced agile sprint planning to the tech team, resulting in faster delivery and clearer priorities.", "quarter": "Q1 2026", "dept": "Creative"}, {"name": "Carlos Nkosi", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q2 2025", "dept": "HR"}, {"name": "Tyler Flores", "message": "Championed a new creative review process that reduced revision cycles by 40% and improved client satisfaction.", "quarter": "Q3 2025", "dept": "Operations"}, {"name": "Luke Eriksson", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q2 2026", "dept": "HR"}, {"name": "Aisha Davis", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q2 2026", "dept": "PR"}, {"name": "Bianca Kim", "message": "Developed a new influencer vetting framework that's now used company-wide, protecting clients from brand risk.", "quarter": "Q2 2026", "dept": "Client Services"}, {"name": "Aaliya Cooper", "message": "Delivered a pitch-winning strategy deck that secured our largest media account of the year. Her research depth and storytelling were exceptional.", "quarter": "Q2 2026", "dept": "Analytics"}, {"name": "Andre Kim", "message": "Championed a new creative review process that reduced revision cycles by 40% and improved client satisfaction.", "quarter": "Q1 2026", "dept": "Analytics"}, {"name": "Felix Nakamura", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q2 2025", "dept": "Technology"}, {"name": "Tyler Vasquez", "message": "Developed a new influencer vetting framework that's now used company-wide, protecting clients from brand risk.", "quarter": "Q2 2025", "dept": "Business Development"}, {"name": "Simone Brown", "message": "Her attention to detail caught a critical error in the campaign brief that would have cost the client significant budget.", "quarter": "Q4 2025", "dept": "Media"}, {"name": "Mei Walsh", "message": "Identified a $200K cost saving opportunity in our vendor contracts through a proactive audit nobody asked for.", "quarter": "Q2 2026", "dept": "HR"}, {"name": "Chloe Adeyemi", "message": "Delivered a stunning visual identity for a major rebrand that the client described as 'exactly what we dreamed of.'", "quarter": "Q1 2026", "dept": "Legal"}, {"name": "Nathan O'Brien", "message": "Ensured our compliance documentation was fully updated ahead of a regulatory deadline with days to spare.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Mei Patel", "message": "Built a tracking system for our events team that has reduced vendor payment delays by 70%.", "quarter": "Q2 2026", "dept": "Strategy"}, {"name": "Chloe Ahmed", "message": "Produced a quarterly wrap-up video that boosted team morale and got shared across the whole agency.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "Tyler Thompson", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q1 2026", "dept": "Marketing"}, {"name": "Carlos Leclerc", "message": "Identified a $200K cost saving opportunity in our vendor contracts through a proactive audit nobody asked for.", "quarter": "Q1 2026", "dept": "Analytics"}, {"name": "Anton Dubois", "message": "Negotiated a media buy that came in 22% under budget without sacrificing a single impression. A masterclass in vendor relations.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "Carlos Eriksson", "message": "Reorganized our file management system, reducing time spent searching for assets by an estimated 25%.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Brett Ahmed", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q4 2025", "dept": "Technology"}, {"name": "Marco Jackson", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q2 2025", "dept": "Legal"}, {"name": "Tom Singh", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q4 2025", "dept": "Research"}, {"name": "Fatima Johnson", "message": "Played a key role in winning a flagship account that represents a significant expansion for our practice.", "quarter": "Q1 2025", "dept": "Analytics"}, {"name": "Diego Brown", "message": "Took on additional scope during a colleague's medical leave without complaint and without missing a single deliverable.", "quarter": "Q2 2026", "dept": "Business Development"}, {"name": "Aaliya Singh", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q4 2025", "dept": "Analytics"}, {"name": "Diego Tanaka", "message": "Created a research methodology that cut our campaign briefing time by 30% and improved strategic alignment.", "quarter": "Q2 2026", "dept": "Research"}, {"name": "Samuel Tanaka", "message": "Took initiative to create a shared resource library that's now used by the entire strategy department.", "quarter": "Q3 2025", "dept": "PR"}, {"name": "Omar Murphy", "message": "Presented a bold new business idea at the all-hands that's now being piloted across two client accounts.", "quarter": "Q1 2025", "dept": "Analytics"}, {"name": "Hana Gupta", "message": "Took initiative to create a shared resource library that's now used by the entire strategy department.", "quarter": "Q2 2026", "dept": "Creative"}, {"name": "Leo Miller", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q1 2026", "dept": "Business Development"}, {"name": "James Park", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q2 2026", "dept": "Creative"}, {"name": "Tom Vasquez", "message": "Coordinated our largest global campaign to date across 12 markets, flawlessly managing time zones and stakeholders.", "quarter": "Q3 2025", "dept": "Legal"}, {"name": "Rachel Walsh", "message": "Proactively flagged a scope creep issue before it escalated, preserving both the budget and the client relationship.", "quarter": "Q1 2026", "dept": "Strategy"}, {"name": "Samuel Davis", "message": "Wrote copy for the holiday campaign that outperformed benchmarks by 3x. The client called it 'the best work we've ever received.'", "quarter": "Q2 2026", "dept": "Media"}, {"name": "Aisha Nakamura", "message": "Delivered a stunning visual identity for a major rebrand that the client described as 'exactly what we dreamed of.'", "quarter": "Q2 2026", "dept": "Business Development"}, {"name": "Ingrid Davis", "message": "Presented our annual impact report to the board with clarity and confidence — received a standing ovation.", "quarter": "Q1 2026", "dept": "Media"}, {"name": "Felix Carter", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q3 2025", "dept": "Marketing"}, {"name": "Sofia Brown", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q4 2025", "dept": "Client Services"}, {"name": "Sarah Walsh", "message": "Presented our annual impact report to the board with clarity and confidence — received a standing ovation.", "quarter": "Q4 2025", "dept": "Media"}, {"name": "Grace Park", "message": "Took on additional scope during a colleague's medical leave without complaint and without missing a single deliverable.", "quarter": "Q1 2025", "dept": "Business Development"}, {"name": "Luke Osei", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q1 2025", "dept": "Media"}, {"name": "Mia Anderson", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q1 2026", "dept": "Events"}, {"name": "Nathan Eriksson", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q4 2025", "dept": "Research"}, {"name": "Derek Park", "message": "Took on additional scope during a colleague's medical leave without complaint and without missing a single deliverable.", "quarter": "Q4 2025", "dept": "Marketing"}, {"name": "Amara Reyes", "message": "Pioneered a new social media content format that increased engagement for one client by over 60%.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "Rachel Jackson", "message": "Produced a quarterly wrap-up video that boosted team morale and got shared across the whole agency.", "quarter": "Q1 2025", "dept": "Legal"}, {"name": "Sarah Cooper", "message": "Onboarded four new clients in one quarter while maintaining perfect satisfaction scores on existing accounts.", "quarter": "Q4 2025", "dept": "Finance"}, {"name": "Grace Singh", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q4 2025", "dept": "Analytics"}, {"name": "Hana Miller", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q4 2025", "dept": "Events"}, {"name": "Jordan Lindberg", "message": "Introduced agile sprint planning to the tech team, resulting in faster delivery and clearer priorities.", "quarter": "Q2 2025", "dept": "PR"}, {"name": "Nina Vasquez", "message": "Designed a new client reporting template that saves each account manager 4 hours per week.", "quarter": "Q2 2025", "dept": "Strategy"}, {"name": "Ravi Vasquez", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q4 2025", "dept": "Legal"}, {"name": "Hana Davis", "message": "Negotiated a media buy that came in 22% under budget without sacrificing a single impression. A masterclass in vendor relations.", "quarter": "Q1 2025", "dept": "Marketing"}, {"name": "Elena Nguyen", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q4 2025", "dept": "Technology"}, {"name": "Patrick Miller", "message": "Organized a team offsite that meaningfully improved cross-department collaboration and team morale.", "quarter": "Q2 2025", "dept": "Client Services"}, {"name": "Rachel Osei", "message": "Delivered a flawless product launch event under an extremely compressed timeline. Every stakeholder walked away impressed.", "quarter": "Q2 2025", "dept": "Media"}, {"name": "Nathan Carter", "message": "Negotiated a media buy that came in 22% under budget without sacrificing a single impression. A masterclass in vendor relations.", "quarter": "Q4 2025", "dept": "Strategy"}, {"name": "Sarah Davis", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q3 2025", "dept": "Media"}, {"name": "Chloe Gupta", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q2 2026", "dept": "Analytics"}, {"name": "Marcus Park", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q3 2025", "dept": "PR"}, {"name": "Patrick Sharma", "message": "Created a client feedback loop that has increased our renewal rate by identifying issues before they become problems.", "quarter": "Q4 2025", "dept": "Creative"}, {"name": "Andre O'Brien", "message": "Ensured our compliance documentation was fully updated ahead of a regulatory deadline with days to spare.", "quarter": "Q4 2025", "dept": "Creative"}, {"name": "Andre Leclerc", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q1 2026", "dept": "Analytics"}, {"name": "Leo Fernandez", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "Grace Gupta", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q3 2025", "dept": "Finance"}, {"name": "Aisha Miller", "message": "Managed a complex multi-vendor shoot flawlessly, delivering assets two days early and under budget.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Aaliya Adeyemi", "message": "Managed a complex multi-vendor shoot flawlessly, delivering assets two days early and under budget.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Fatima Al-Hassan", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q2 2026", "dept": "Finance"}, {"name": "Tanya Moreau", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q1 2026", "dept": "Technology"}, {"name": "Ethan Kim", "message": "Wrote copy for the holiday campaign that outperformed benchmarks by 3x. The client called it 'the best work we've ever received.'", "quarter": "Q2 2026", "dept": "Strategy"}, {"name": "Sofia Carter", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q2 2025", "dept": "Operations"}, {"name": "Leila Reyes", "message": "Organized a team offsite that meaningfully improved cross-department collaboration and team morale.", "quarter": "Q2 2026", "dept": "Analytics"}, {"name": "Carlos Osei", "message": "Delivered a stunning visual identity for a major rebrand that the client described as 'exactly what we dreamed of.'", "quarter": "Q3 2025", "dept": "PR"}, {"name": "Mia Cooper", "message": "Stepped in as interim team lead with zero notice and delivered an outstanding quarterly review on time.", "quarter": "Q2 2026", "dept": "Technology"}, {"name": "Simone Petrov", "message": "Automated three manual reporting tasks, freeing up nearly a full day per week for the analytics team.", "quarter": "Q2 2025", "dept": "Business Development"}, {"name": "Anton Sharma", "message": "Rebuilt our performance reporting dashboard from scratch — what used to take 3 days now takes 3 hours.", "quarter": "Q2 2026", "dept": "Creative"}, {"name": "Omar Nkosi", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q1 2025", "dept": "Client Services"}, {"name": "Marco Murphy", "message": "Her creative concept for the spring campaign became the benchmark for the client's entire brand refresh.", "quarter": "Q3 2025", "dept": "Technology"}, {"name": "Zoe Carter", "message": "Built strong trust with a notoriously difficult client, turning the relationship into one of our most collaborative.", "quarter": "Q4 2025", "dept": "Media"}, {"name": "Zoe Park", "message": "Improved our invoicing process from end to end, cutting payment cycles by an average of 12 days.", "quarter": "Q2 2025", "dept": "Finance"}, {"name": "Andre Zhang", "message": "Mentored three junior creatives who all received promotions this cycle. Her investment in others is what makes this team exceptional.", "quarter": "Q1 2025", "dept": "Business Development"}, {"name": "Aisha Torres", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q2 2025", "dept": "Finance"}, {"name": "Marcus Tanaka", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q2 2025", "dept": "PR"}, {"name": "Ethan Zhang", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q2 2025", "dept": "Technology"}, {"name": "Jason Zhang", "message": "Produced a quarterly wrap-up video that boosted team morale and got shared across the whole agency.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Sarah Thompson", "message": "Organized a team offsite that meaningfully improved cross-department collaboration and team morale.", "quarter": "Q1 2026", "dept": "Events"}, {"name": "Anton Vasquez", "message": "Proactively flagged a scope creep issue before it escalated, preserving both the budget and the client relationship.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "James Zhang", "message": "Stepped in as interim team lead with zero notice and delivered an outstanding quarterly review on time.", "quarter": "Q1 2026", "dept": "Marketing"}, {"name": "Aisha Patel", "message": "Managed a complex multi-vendor shoot flawlessly, delivering assets two days early and under budget.", "quarter": "Q3 2025", "dept": "Client Services"}, {"name": "Derek Thompson", "message": "Turned a near-miss into a win by staying calm under pressure and rallying the team around a revised plan.", "quarter": "Q4 2025", "dept": "Research"}, {"name": "Hana Johnson", "message": "Trained a cohort of six new analysts in our proprietary data tools, accelerating their ramp-up by weeks.", "quarter": "Q1 2026", "dept": "Media"}, {"name": "Tyler Nkosi", "message": "Stepped in as interim team lead with zero notice and delivered an outstanding quarterly review on time.", "quarter": "Q2 2025", "dept": "Legal"}, {"name": "Brett Martinez", "message": "Fostered a culture of psychological safety on her team — her direct reports consistently rate her as the best manager they've had.", "quarter": "Q4 2025", "dept": "Business Development"}, {"name": "Aaliya Al-Hassan", "message": "Wrote copy for the holiday campaign that outperformed benchmarks by 3x. The client called it 'the best work we've ever received.'", "quarter": "Q4 2025", "dept": "Strategy"}, {"name": "Grace Leclerc", "message": "Ran back-to-back focus groups for three clients in a single week without dropping the ball on any.", "quarter": "Q1 2025", "dept": "HR"}, {"name": "Camille Moreau", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q1 2025", "dept": "PR"}, {"name": "Andre Moreau", "message": "Played a key role in winning a flagship account that represents a significant expansion for our practice.", "quarter": "Q1 2025", "dept": "PR"}, {"name": "Lily Petrov", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q4 2025", "dept": "Media"}, {"name": "Nina Kowalski", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q2 2025", "dept": "Technology"}, {"name": "Tanya Reyes", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q3 2025", "dept": "Research"}, {"name": "Yuki Reyes", "message": "Identified a $200K cost saving opportunity in our vendor contracts through a proactive audit nobody asked for.", "quarter": "Q1 2026", "dept": "Creative"}, {"name": "Lily Jackson", "message": "Created a client feedback loop that has increased our renewal rate by identifying issues before they become problems.", "quarter": "Q4 2025", "dept": "Finance"}, {"name": "Grace O'Brien", "message": "Ensured our compliance documentation was fully updated ahead of a regulatory deadline with days to spare.", "quarter": "Q4 2025", "dept": "Technology"}, {"name": "Marco Kowalski", "message": "Championed a new creative review process that reduced revision cycles by 40% and improved client satisfaction.", "quarter": "Q2 2025", "dept": "Media"}, {"name": "James Ahmed", "message": "Coordinated our largest global campaign to date across 12 markets, flawlessly managing time zones and stakeholders.", "quarter": "Q1 2026", "dept": "Analytics"}, {"name": "Grace Torres", "message": "Turned a near-miss into a win by staying calm under pressure and rallying the team around a revised plan.", "quarter": "Q3 2025", "dept": "Strategy"}, {"name": "Nina Johnson", "message": "Trained a cohort of six new analysts in our proprietary data tools, accelerating their ramp-up by weeks.", "quarter": "Q2 2026", "dept": "Events"}, {"name": "Elena Petrov", "message": "Produced a quarterly wrap-up video that boosted team morale and got shared across the whole agency.", "quarter": "Q3 2025", "dept": "Events"}, {"name": "Aaliya Weber", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q1 2025", "dept": "Business Development"}, {"name": "Fatima Reyes", "message": "Created a client feedback loop that has increased our renewal rate by identifying issues before they become problems.", "quarter": "Q3 2025", "dept": "Marketing"}, {"name": "Jordan Anderson", "message": "Led the complete redesign of our client onboarding process, reducing time-to-launch by 40% and earning glowing feedback from three major accounts.", "quarter": "Q1 2025", "dept": "Finance"}, {"name": "Felix Johnson", "message": "Delivered a flawless product launch event under an extremely compressed timeline. Every stakeholder walked away impressed.", "quarter": "Q2 2026", "dept": "Business Development"}, {"name": "Aisha Weber", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q4 2025", "dept": "Marketing"}, {"name": "Ethan Kowalski", "message": "Ensured our compliance documentation was fully updated ahead of a regulatory deadline with days to spare.", "quarter": "Q2 2026", "dept": "Business Development"}, {"name": "James Eriksson", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q2 2025", "dept": "Business Development"}, {"name": "Aaliya Chen", "message": "Trained a cohort of six new analysts in our proprietary data tools, accelerating their ramp-up by weeks.", "quarter": "Q4 2025", "dept": "PR"}, {"name": "Lily Gupta", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q1 2026", "dept": "Creative"}, {"name": "Nadia Martinez", "message": "Onboarded four new clients in one quarter while maintaining perfect satisfaction scores on existing accounts.", "quarter": "Q4 2025", "dept": "Business Development"}, {"name": "Omar O'Brien", "message": "Identified a $200K cost saving opportunity in our vendor contracts through a proactive audit nobody asked for.", "quarter": "Q3 2025", "dept": "HR"}, {"name": "Rachel Nakamura", "message": "Her feedback on our pitch process helped us close two deals we might have otherwise lost.", "quarter": "Q3 2025", "dept": "Analytics"}, {"name": "Sarah Nakamura", "message": "Consistently delivers above-and-beyond quality on every brief — this quarter was no exception.", "quarter": "Q1 2025", "dept": "Events"}, {"name": "Sofia Jackson", "message": "Built a tracking system for our events team that has reduced vendor payment delays by 70%.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "Simone Cooper", "message": "Coordinated our largest global campaign to date across 12 markets, flawlessly managing time zones and stakeholders.", "quarter": "Q3 2025", "dept": "Business Development"}, {"name": "Ethan Nkosi", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q3 2025", "dept": "Creative"}, {"name": "Anton Gupta", "message": "Created a research methodology that cut our campaign briefing time by 30% and improved strategic alignment.", "quarter": "Q2 2026", "dept": "Operations"}, {"name": "Tom Petrov", "message": "Ran back-to-back focus groups for three clients in a single week without dropping the ball on any.", "quarter": "Q2 2026", "dept": "Events"}, {"name": "Amara Martinez", "message": "Rebuilt our performance reporting dashboard from scratch — what used to take 3 days now takes 3 hours.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "James Tanaka", "message": "Improved our invoicing process from end to end, cutting payment cycles by an average of 12 days.", "quarter": "Q2 2025", "dept": "Strategy"}, {"name": "Diego Osei", "message": "Developed a new influencer vetting framework that's now used company-wide, protecting clients from brand risk.", "quarter": "Q2 2026", "dept": "Business Development"}, {"name": "James Sato", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q3 2025", "dept": "Business Development"}, {"name": "Chloe O'Brien", "message": "Her feedback on our pitch process helped us close two deals we might have otherwise lost.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Nadia Lindberg", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q1 2026", "dept": "Research"}, {"name": "Kevin Kim", "message": "Developed a new influencer vetting framework that's now used company-wide, protecting clients from brand risk.", "quarter": "Q3 2025", "dept": "Finance"}, {"name": "James Lindberg", "message": "Stepped in as interim team lead with zero notice and delivered an outstanding quarterly review on time.", "quarter": "Q2 2026", "dept": "Creative"}, {"name": "Leo Rodriguez", "message": "Led the complete redesign of our client onboarding process, reducing time-to-launch by 40% and earning glowing feedback from three major accounts.", "quarter": "Q2 2025", "dept": "Marketing"}, {"name": "Aisha Walsh", "message": "Negotiated a media buy that came in 22% under budget without sacrificing a single impression. A masterclass in vendor relations.", "quarter": "Q3 2025", "dept": "Client Services"}, {"name": "Andre Ahmed", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q1 2025", "dept": "Creative"}, {"name": "David Leclerc", "message": "Delivered a stunning visual identity for a major rebrand that the client described as 'exactly what we dreamed of.'", "quarter": "Q2 2026", "dept": "HR"}, {"name": "Andre Tanaka", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q4 2025", "dept": "Operations"}, {"name": "Leila Patel", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q1 2026", "dept": "Technology"}, {"name": "Ryan Fernandez", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q4 2025", "dept": "Analytics"}, {"name": "Lily Nkosi", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q3 2025", "dept": "Strategy"}, {"name": "Jason Leclerc", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q3 2025", "dept": "Research"}, {"name": "Kevin Dubois", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q1 2026", "dept": "Research"}, {"name": "Sofia Martinez", "message": "Mentored three junior creatives who all received promotions this cycle. Her investment in others is what makes this team exceptional.", "quarter": "Q4 2025", "dept": "Analytics"}, {"name": "Tanya Bergström", "message": "Mentored three junior creatives who all received promotions this cycle. Her investment in others is what makes this team exceptional.", "quarter": "Q1 2025", "dept": "HR"}, {"name": "Chloe Johnson", "message": "Built strong trust with a notoriously difficult client, turning the relationship into one of our most collaborative.", "quarter": "Q1 2026", "dept": "Strategy"}, {"name": "Sofia Ahmed", "message": "Wrote copy for the holiday campaign that outperformed benchmarks by 3x. The client called it 'the best work we've ever received.'", "quarter": "Q1 2025", "dept": "Creative"}, {"name": "Fatima Nkosi", "message": "Delivered a flawless product launch event under an extremely compressed timeline. Every stakeholder walked away impressed.", "quarter": "Q2 2026", "dept": "Operations"}, {"name": "Marco Sharma", "message": "Consistently delivers above-and-beyond quality on every brief — this quarter was no exception.", "quarter": "Q4 2025", "dept": "Technology"}, {"name": "Felix Dubois", "message": "Automated three manual reporting tasks, freeing up nearly a full day per week for the analytics team.", "quarter": "Q1 2025", "dept": "Finance"}, {"name": "Mia Thompson", "message": "Presented a bold new business idea at the all-hands that's now being piloted across two client accounts.", "quarter": "Q1 2025", "dept": "Media"}, {"name": "Sarah Jackson", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q4 2025", "dept": "Creative"}, {"name": "Ryan Leclerc", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q1 2025", "dept": "Media"}, {"name": "Nina Thompson", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Aaliya Martinez", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q1 2025", "dept": "Business Development"}, {"name": "Hana Singh", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q2 2026", "dept": "HR"}, {"name": "Fatima Hansen", "message": "Presented our annual impact report to the board with clarity and confidence — received a standing ovation.", "quarter": "Q3 2025", "dept": "HR"}, {"name": "Aisha Johnson", "message": "Delivered a flawless product launch event under an extremely compressed timeline. Every stakeholder walked away impressed.", "quarter": "Q2 2026", "dept": "Finance"}, {"name": "Patrick Okafor", "message": "Turned around a struggling client relationship through consistent communication and creative problem-solving — they renewed for two more years.", "quarter": "Q1 2025", "dept": "Operations"}, {"name": "Rachel Weber", "message": "Spearheaded our move to a new project management system, training 60+ staff and cutting missed deadlines by half.", "quarter": "Q1 2026", "dept": "Media"}, {"name": "Aaliya Bergström", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q2 2025", "dept": "Technology"}, {"name": "Ravi Sullivan", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q3 2025", "dept": "Client Services"}, {"name": "Marco Carter", "message": "Onboarded four new clients in one quarter while maintaining perfect satisfaction scores on existing accounts.", "quarter": "Q3 2025", "dept": "Business Development"}, {"name": "Sarah Nkosi", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q2 2025", "dept": "Research"}, {"name": "Ethan Sharma", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q1 2026", "dept": "HR"}, {"name": "Tanya Kowalski", "message": "Onboarded four new clients in one quarter while maintaining perfect satisfaction scores on existing accounts.", "quarter": "Q3 2025", "dept": "PR"}, {"name": "Fatima Singh", "message": "Coordinated a last-minute venue change for a flagship event and pulled it off without a single complaint.", "quarter": "Q2 2025", "dept": "Technology"}, {"name": "David Kowalski", "message": "Introduced agile sprint planning to the tech team, resulting in faster delivery and clearer priorities.", "quarter": "Q2 2026", "dept": "Media"}, {"name": "Tom Anderson", "message": "Rebuilt our performance reporting dashboard from scratch — what used to take 3 days now takes 3 hours.", "quarter": "Q1 2025", "dept": "Finance"}, {"name": "Amara Davis", "message": "Managed a complex multi-vendor shoot flawlessly, delivering assets two days early and under budget.", "quarter": "Q2 2026", "dept": "Legal"}, {"name": "Carlos Bergström", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q2 2026", "dept": "Operations"}, {"name": "Derek Martinez", "message": "Quietly fixed a billing integration issue that had gone unnoticed for months — saving the company over $80,000 in reconciliation work.", "quarter": "Q2 2026", "dept": "PR"}, {"name": "Luke Vasquez", "message": "Launched a new DE&I hiring initiative that has already diversified our candidate pipeline significantly.", "quarter": "Q1 2025", "dept": "Business Development"}, {"name": "Sofia Lindberg", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q1 2025", "dept": "Legal"}, {"name": "Brett Singh", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q4 2025", "dept": "Operations"}, {"name": "James Fernandez", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q2 2025", "dept": "Creative"}, {"name": "Bianca Reyes", "message": "Delivered a stunning visual identity for a major rebrand that the client described as 'exactly what we dreamed of.'", "quarter": "Q4 2025", "dept": "Creative"}, {"name": "Tyler Patel", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q1 2025", "dept": "Analytics"}, {"name": "Sarah Torres", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q1 2026", "dept": "Technology"}, {"name": "Nathan Al-Hassan", "message": "Delivered a pitch-winning strategy deck that secured our largest media account of the year. Her research depth and storytelling were exceptional.", "quarter": "Q4 2025", "dept": "Business Development"}, {"name": "Bianca Singh", "message": "Produced a documentary-style brand film in record time that generated 2M organic views in its first week.", "quarter": "Q1 2025", "dept": "Creative"}, {"name": "Rachel Sato", "message": "Stepped up to manage two teams simultaneously during a critical transition period — never missed a deadline and kept morale high throughout.", "quarter": "Q1 2026", "dept": "Finance"}, {"name": "Zoe Brown", "message": "Built strong trust with a notoriously difficult client, turning the relationship into one of our most collaborative.", "quarter": "Q1 2025", "dept": "Technology"}, {"name": "Anton Reyes", "message": "Improved our invoicing process from end to end, cutting payment cycles by an average of 12 days.", "quarter": "Q1 2026", "dept": "PR"}, {"name": "Ethan Chen", "message": "Built strong trust with a notoriously difficult client, turning the relationship into one of our most collaborative.", "quarter": "Q3 2025", "dept": "Technology"}, {"name": "David Thompson", "message": "Delivered a pitch-winning strategy deck that secured our largest media account of the year. Her research depth and storytelling were exceptional.", "quarter": "Q2 2026", "dept": "Analytics"}, {"name": "Simone Nguyen", "message": "Reorganized our file management system, reducing time spent searching for assets by an estimated 25%.", "quarter": "Q2 2025", "dept": "Analytics"}, {"name": "Aaliya Patel", "message": "Played a key role in winning a flagship account that represents a significant expansion for our practice.", "quarter": "Q3 2025", "dept": "Strategy"}, {"name": "Patrick Tanaka", "message": "Her feedback on our pitch process helped us close two deals we might have otherwise lost.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "Ethan Nguyen", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q4 2025", "dept": "Operations"}, {"name": "Samuel Al-Hassan", "message": "Developed a crisis communications plan that helped a client navigate a major PR challenge with minimal brand damage.", "quarter": "Q3 2025", "dept": "Media"}, {"name": "Priya Sharma", "message": "Coordinated our largest global campaign to date across 12 markets, flawlessly managing time zones and stakeholders.", "quarter": "Q3 2025", "dept": "HR"}, {"name": "Patrick Patel", "message": "Her social listening analysis identified a brand safety risk before it became a crisis. Proactive thinking at its best.", "quarter": "Q2 2026", "dept": "Events"}, {"name": "Yuki Martinez", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q2 2025", "dept": "Analytics"}, {"name": "Luke Johnson", "message": "His dedication during the platform migration kept us live without a single client-facing outage. Truly heroic work.", "quarter": "Q2 2025", "dept": "Media"}, {"name": "Yuki Adeyemi", "message": "Developed a competitive intelligence tracker that gives our strategy team a real edge in new business.", "quarter": "Q1 2025", "dept": "Client Services"}, {"name": "Ethan Evans", "message": "Ran a full competitive audit in 48 hours to support a new business pitch — we won the account.", "quarter": "Q1 2026", "dept": "Events"}, {"name": "Ryan Sato", "message": "Created a research methodology that cut our campaign briefing time by 30% and improved strategic alignment.", "quarter": "Q3 2025", "dept": "Operations"}, {"name": "Tom Johnson", "message": "Presented a bold new business idea at the all-hands that's now being piloted across two client accounts.", "quarter": "Q4 2025", "dept": "Research"}, {"name": "Rachel Rodriguez", "message": "Launched a podcast series for a key client that hit the top 50 in its category within the first month.", "quarter": "Q1 2026", "dept": "HR"}, {"name": "Lily Williams", "message": "Built the internal dashboard that now gives leadership real-time visibility into every active campaign.", "quarter": "Q1 2025", "dept": "Analytics"}, {"name": "Jordan Sato", "message": "Wrote a thought leadership piece that was published in a top-tier industry journal, elevating our brand credibility.", "quarter": "Q1 2026", "dept": "Finance"}, {"name": "Derek Evans", "message": "Reorganized our file management system, reducing time spent searching for assets by an estimated 25%.", "quarter": "Q3 2025", "dept": "Technology"}, {"name": "Tanya Sato", "message": "Ensured our compliance documentation was fully updated ahead of a regulatory deadline with days to spare.", "quarter": "Q4 2025", "dept": "HR"}, {"name": "Andre Anderson", "message": "Secured three press placements in national outlets for a client launch that exceeded all reach KPIs.", "quarter": "Q1 2026", "dept": "Finance"}, {"name": "Rachel Flores", "message": "Brought together three cross-functional teams to deliver a campaign under budget, ahead of schedule, and beyond expectations.", "quarter": "Q1 2025", "dept": "Strategy"}];
+
+  // ── State ──
+  let entries = [];
+  let currentIndex = 0;
+  let isPlaying = false;
+  let timer = null;
+  let progressTimer = null;
+  let rawRows = [];
+  let headers = [];
+
+  const INTERVAL_DEFAULT = 7000;
+  let interval = INTERVAL_DEFAULT;
+
+  // ── Display update ──
+  function setDisplay(index, animate = true) {
+    if (!entries.length) return;
+    currentIndex = ((index % entries.length) + entries.length) % entries.length;
+    const e = entries[currentIndex];
+
+    const nameEl = document.getElementById('displayName');
+    const textEl = document.getElementById('displayText');
+    const qEl    = document.getElementById('displayQuarter');
+    const dEl    = document.getElementById('displayDept');
+    const badge  = document.getElementById('counterBadge');
+    const label  = document.getElementById('pbLabel');
+
+    if (animate) {
+      nameEl.style.opacity = 0;
+      textEl.style.opacity = 0;
+      setTimeout(() => {
+        nameEl.textContent = e.name || 'Anonymous';
+        textEl.textContent = e.message || '';
+        qEl.textContent    = e.quarter || 'Q1 2026';
+        dEl.textContent    = e.dept || '';
+        nameEl.style.transition = 'opacity 0.5s';
+        textEl.style.transition = 'opacity 0.5s';
+        nameEl.style.opacity = 1;
+        textEl.style.opacity = 1;
+      }, 250);
+    } else {
+      nameEl.textContent = e.name || 'Anonymous';
+      textEl.textContent = e.message || '';
+      qEl.textContent    = e.quarter || 'Q1 2026';
+      dEl.textContent    = e.dept || '';
+    }
+
+    badge.textContent = `${currentIndex + 1} / ${entries.length}`;
+    label.textContent = `${currentIndex + 1} / ${entries.length}`;
+
+    // Re-render the visible window of cards centred on currentIndex
+    renderCardWindow(currentIndex);
+
+    resetProgress();
+  }
+
+  // ── Progress bar ──
+  function resetProgress() {
+    clearInterval(progressTimer);
+    const bar = document.getElementById('progressBar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+    if (isPlaying) {
+      setTimeout(() => {
+        bar.style.transition = `width ${interval}ms linear`;
+        bar.style.width = '100%';
+      }, 30);
+      progressTimer = setTimeout(() => {}, interval);
+    }
+  }
+
+  // ── Playback ──
+  function startPlay() {
+    isPlaying = true;
+    document.getElementById('playPauseBtn').innerHTML = '&#9646;&#9646;';
+    resetProgress();
+    timer = setInterval(() => {
+      setDisplay(currentIndex + 1);
+    }, interval);
+  }
+
+  function pausePlay() {
+    isPlaying = false;
+    document.getElementById('playPauseBtn').innerHTML = '&#9654;';
+    clearInterval(timer);
+    clearInterval(progressTimer);
+    const bar = document.getElementById('progressBar');
+    bar.style.transition = 'none';
+    bar.style.width = '0%';
+  }
+
+  function togglePlay() {
+    if (!entries.length) { showToast('Load a file first!'); return; }
+    isPlaying ? pausePlay() : startPlay();
+  }
+
+  function nextEntry() {
+    if (!entries.length) return;
+    pausePlay();
+    setDisplay(currentIndex + 1);
+  }
+
+  function prevEntry() {
+    if (!entries.length) return;
+    pausePlay();
+    setDisplay(currentIndex - 1);
+  }
+
+  function changeSpeed() {
+    interval = parseInt(document.getElementById('speedSelect').value);
+    if (isPlaying) { pausePlay(); startPlay(); }
+  }
+
+  // ── Virtualised card window (renders ~25 cards around current index) ──
+  const CARD_WINDOW = 25; // cards visible at a time
+
+  function renderCardWindow(activeIdx) {
+    const row = document.getElementById('cardsRow');
+    const total = entries.length;
+    if (!total) return;
+
+    // Decide window bounds
+    const half = Math.floor(CARD_WINDOW / 2);
+    let start = activeIdx - half;
+    let end   = activeIdx + half;
+    if (start < 0) { end -= start; start = 0; }
+    if (end >= total) { start = Math.max(0, start - (end - total + 1)); end = total - 1; }
+
+    row.innerHTML = '';
+
+    // "jump to start" hint if not at beginning
+    if (start > 0) {
+      const hint = document.createElement('div');
+      hint.className = 'mini-card card-hint';
+      hint.textContent = `◀ ${start} more`;
+      hint.addEventListener('click', () => { pausePlay(); setDisplay(0); });
+      row.appendChild(hint);
+    }
+
+    for (let i = start; i <= end; i++) {
+      const e = entries[i];
+      const card = document.createElement('div');
+      card.className = 'mini-card' + (i === activeIdx ? ' active' : '');
+      card.dataset.idx = i;
+      card.innerHTML = `
+        <div class="mini-card-name">${e.name || 'Anonymous'}</div>
+        ${e.dept ? `<div class="mini-card-dept">${e.dept}</div>` : ''}
+        <div class="mini-card-text">${(e.message || '').substring(0, 68)}${e.message && e.message.length > 68 ? '…' : ''}</div>
+      `;
+      card.addEventListener('click', () => { pausePlay(); setDisplay(i); });
+      row.appendChild(card);
+    }
+
+    // "jump to end" hint if not at end
+    if (end < total - 1) {
+      const hint = document.createElement('div');
+      hint.className = 'mini-card card-hint';
+      hint.textContent = `${total - 1 - end} more ▶`;
+      hint.addEventListener('click', () => { pausePlay(); setDisplay(total - 1); });
+      row.appendChild(hint);
+    }
+
+    // Scroll active card into centre
+    const activeCard = row.querySelector('.mini-card.active');
+    if (activeCard) activeCard.scrollIntoView({ behavior: 'smooth', block: 'nearest', inline: 'center' });
+  }
+
+  // ── Build mini cards (initial render) ──
+  function buildCards() {
+    renderCardWindow(0);
+  }
+
+  // ── Auto-load embedded data on page load ──
+  document.addEventListener('DOMContentLoaded', () => {
+    entries = EMBEDDED_ENTRIES;
+    buildCards();
+    setDisplay(0, false);
+    document.getElementById('cardsLabel').style.display = 'block';
+    startPlay();
+    // Enter signage mode automatically
+    setTimeout(() => { signageActive = true; applySignageMode(); }, 500);
+  });
+
+  // ── Signage / Fullscreen mode ──
+  let signageActive = false;
+
+  function toggleSignage() {
+    signageActive = !signageActive;
+    applySignageMode();
+  }
+
+  function applySignageMode() {
+    const btn = document.getElementById('signageBtn');
+    if (signageActive) {
+      document.body.classList.add('signage-mode');
+      btn.textContent = '✕ Exit Signage';
+      // Request true browser fullscreen if supported
+      if (document.documentElement.requestFullscreen) {
+        document.documentElement.requestFullscreen().catch(() => {});
+      }
+    } else {
+      document.body.classList.remove('signage-mode');
+      btn.textContent = '⛶ Signage Mode';
+      if (document.exitFullscreen && document.fullscreenElement) {
+        document.exitFullscreen().catch(() => {});
+      }
+    }
+  }
+
+  // Exit signage mode on Escape key
+  document.addEventListener('keydown', e => {
+    if (e.key === 'Escape' && signageActive) {
+      signageActive = false;
+      applySignageMode();
+    }
+    // Also allow space bar to play/pause while in signage mode
+    if (e.key === ' ' && signageActive) {
+      e.preventDefault();
+      togglePlay();
+    }
+    // Arrow keys to navigate in signage mode
+    if (e.key === 'ArrowRight' && signageActive) { e.preventDefault(); nextEntry(); }
+    if (e.key === 'ArrowLeft'  && signageActive) { e.preventDefault(); prevEntry(); }
+  });
+
+  // Auto-enter signage mode when data finishes loading (good for Zoom signage)
+  function enterSignageAfterLoad() {
+    signageActive = true;
+    applySignageMode();
+  }
+  function showToast(msg) {
+    const t = document.getElementById('toast');
+    t.textContent = msg;
+    t.classList.add('show');
+    setTimeout(() => t.classList.remove('show'), 3000);
+  }
+</script>
+
+</body>
+</html>
